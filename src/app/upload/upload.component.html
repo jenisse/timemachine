@@ -1,0 +1,34 @@
+
+<div class="background">
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
+<div class="center">
+  <h1>TCSER, please upload your memory...</h1>
+  <label i18n for="inputFile" class="sr-only">Upload file</label>
+  <form>
+      <input type="file" id="input-ru" class="form-control" data-max-size="10" name="inputru[]" placeholder="Upload File" (change)="selectFile($event)" required autofocus >
+      <button class="btn btn-lg btn-primary btn-block"  type="submit"  [disabled]="!selectedFiles" (click)="upload()">Upload memory</button>    
+  </form>
+  <script>
+    $(function(){
+        $('form').submit(function(){
+            var isOk = true;
+            $('input[type=file][data-max-size]').each(function(){
+                if(typeof this.files[0] !== 'undefined'){
+                    var maxSize = parseInt($(this).attr('max-size'),10),
+                    size = this.files[0].size;
+                    isOk = maxSize > size;
+                    return isOk;
+                }
+            });
+            alert('file size is  incorrect- must be max size bytes');
+            return isOk;
+        });
+    });
+    </script>
+  <p class="mt-5 mb-3 ">&copy; 2017-2018</p>
+  
+</div>
+
+
